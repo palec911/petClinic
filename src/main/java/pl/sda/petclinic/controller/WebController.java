@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import pl.sda.petclinic.model.Pet;
 import pl.sda.petclinic.services.PetService;
 
@@ -45,5 +46,18 @@ public class WebController {
         model.addAttribute(pet);
 
         return "pet-form";
+    }
+
+    @GetMapping("/updatePetForm")
+    public String updatePetForm(Model model, @RequestParam("petId") Long petId) {
+        Pet petToUpdate = petService.getPetById(petId).get();
+        model.addAttribute("pet", petToUpdate);
+        return "pet-form";
+    }
+
+    @GetMapping("/deletePet")
+    public String removePet(@RequestParam("petId") Long petId) {
+        petService.deletePetById(petId);
+        return "redirect:/pets";
     }
 }

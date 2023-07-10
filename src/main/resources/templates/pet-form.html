@@ -23,7 +23,7 @@
 
   <form action="#" th:action="@{/pet}"
         th:object="${pet}" method="POST">
-
+    <input type="hidden" th:field="*{petId}">
     <input type="text" th:field="*{name}"
            class="form-control mb-4 w-25" placeholder="First name">
 
