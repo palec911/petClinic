@@ -48,4 +48,10 @@ public class Pet {
         this.petType = petType;
         this.note = note;
     }
+
+    public Pet(String name, LocalDate date, PetType petType) {
+        this.name = name;
+        this.date = date;
+        this.petType = petType;
+    }
 }
