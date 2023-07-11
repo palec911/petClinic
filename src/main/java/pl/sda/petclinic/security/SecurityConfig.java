@@ -57,10 +57,19 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests( config ->
                 config
+                        .requestMatchers(HttpMethod.GET, "/").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/pets").hasRole("USER")
+
                         .requestMatchers(HttpMethod.GET, "/api/owners").hasRole("USER")
+                        .requestMatchers(HttpMethod.POST, "/api/owner").hasRole("USER")
                         .requestMatchers(HttpMethod.POST, "/api/createVet").hasRole("VET")
                         .requestMatchers(HttpMethod.POST, "/api/createSpeciality").hasRole("ADMIN"));
 
+//                http.formLogin(Customizer.withDefaults());
+        http.formLogin(form -> form
+                .loginPage("/login")
+                .loginProcessingUrl("/authenticateUser")
+                .permitAll());
         http.httpBasic(Customizer.withDefaults());
 
         http.csrf(csrf -> csrf.disable());

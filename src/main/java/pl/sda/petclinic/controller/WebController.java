@@ -60,4 +60,13 @@ public class WebController {
         petService.deletePetById(petId);
         return "redirect:/pets";
     }
+
+    @GetMapping("/")
+    public String index(Model model) {
+        return "index";
+    }
+    @GetMapping("/login")
+    public String loginPage() {
+        return "custom-login";
+    }
 }
