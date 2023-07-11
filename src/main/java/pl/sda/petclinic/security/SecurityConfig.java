@@ -63,7 +63,8 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET, "/api/owners").hasRole("USER")
                         .requestMatchers(HttpMethod.POST, "/api/owner").hasRole("USER")
                         .requestMatchers(HttpMethod.POST, "/api/createVet").hasRole("VET")
-                        .requestMatchers(HttpMethod.POST, "/api/createSpeciality").hasRole("ADMIN"));
+                        .requestMatchers(HttpMethod.POST, "/api/createSpeciality").hasRole("ADMIN")
+        ).logout( logout -> logout.permitAll());;
 
 //                http.formLogin(Customizer.withDefaults());
         http.formLogin(form -> form
