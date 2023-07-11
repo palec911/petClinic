@@ -4,9 +4,17 @@
 <head>
   <meta charset="UTF-8">
   <title>Login page</title>
+  <style>
+    .failed {
+      color: red;
+    }
+  </style>
 </head>
 <body>
 <form action="#" th:action="@{/authenticateUser}" method="POST">
+  <div th:if="${param.error}">
+    <i class="failed">Sorry, you entered invalid credentials</i>
+  </div>
   <p>
     Username: <input type="text" name="username" placeholder="username">
   </p>
