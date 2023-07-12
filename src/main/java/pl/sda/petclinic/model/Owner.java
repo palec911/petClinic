@@ -1,6 +1,7 @@
 package pl.sda.petclinic.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
 import lombok.*;
 
 import java.util.HashSet;
@@ -17,12 +18,13 @@ public class Owner {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotEmpty
     private String firstName;
-
+    @NotEmpty
     private String lastName;
-
+    @NotEmpty
     private String address;
-
+    @NotEmpty
     private String city;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)

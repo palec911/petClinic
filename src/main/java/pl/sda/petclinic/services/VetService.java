@@ -20,7 +20,10 @@ public class VetService {
         vetRepository.save(vet);
     }
     public Vet getVet(Long id) {
-        return vetRepository.findById(id).get();
+        Vet vet = vetRepository.findById(id).get();
+        vet.setFirstName(vet.getFirstName().toUpperCase());
+        return vet;
+
     }
 
     public List<Vet> getAllVets() {
