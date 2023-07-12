@@ -1,5 +1,6 @@
 package pl.sda.petclinic.controller;
 
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -27,7 +28,7 @@ public class RestApiController {
     }
 
     @PostMapping("/owner")
-    public ResponseEntity<Owner> createOwner(@RequestBody Owner owner) {
+    public ResponseEntity<Owner> createOwner(@Valid @RequestBody Owner owner) {
         ownerService.addOwner(owner);
         return new ResponseEntity<>(owner, HttpStatus.CREATED);
     }
